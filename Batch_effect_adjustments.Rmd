@@ -1,0 +1,43 @@
+---
+title: "Batch effects adjustments"
+author: "Sharonhe"
+date: "November 8, 2016"
+output: html_document
+---
+
+## Dependencies
+
+```{r}
+library(devtools)
+library(Biobase)
+library(sva)
+library(bladderbatch)
+library(snpStats)
+```
+
+## Laod the data
+
+Data are gene expression measurements from a bladder cancer study: [Gene expression in the urinary bladder: a common carcinoma in situ gene expression signature exists disregarding histopathological classification.](http://cancerres.aacrjournals.org/content/64/11/4040.full.pdf) The data can be loaded from the [bladderbatch](http://bioconductor.org/packages/release/data/experiment/html/bladderbatch.html) data package. 
+
+```{r}
+data(bladderdata)
+pheno = pData(bladderEset)
+edata = exprs(bladderEset)
+```
+
+## Adjustment for batch effects with a linear model
+
+```{r}
+mod = model.matrix(~as.factor(cancer) + as.factor(batch),data=pheno)
+fit = lm.fit(mod,t(edata))
+hist(fit$coefficients[2,],col=2,breaks=100)
+```
+
+
+## Session information
+
+```{r session_info}
+devtools::session_info()
+```
+
+This document was processed on: `r Sys.Date()`.
