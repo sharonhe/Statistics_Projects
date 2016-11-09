@@ -60,6 +60,19 @@ table(pdata$tissue.type)
 tidy(lm(edata[1,] ~ pdata$tissue.type )) # the first tissue type (in this case is "adipose"") refers to the "(Intercept)" in the results showed
 ```
 
+## Adjusting for variables 
+
+```{r}
+lm3 = lm(edata[1,] ~ pdata$age + pdata$gender)
+tidy(lm3)
+```
+
+```{r}
+##           term  estimate  std.error  statistic     p.value
+## 1   (Intercept) 2331.5814 438.181127  5.3210448 0.000138739
+## 2     pdata$age  -23.9133   6.488058 -3.6857414 0.002743642
+## 3 pdata$genderM -207.2565 236.430512 -0.8766066 0.396610372
+```
 
 
 
