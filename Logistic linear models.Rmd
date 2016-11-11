@@ -76,3 +76,11 @@ qq.chisq(chi.squared(glm_all),df=1)
 glm_all_adj = snp.rhs.tests(status ~ pcs,snp.data=sub.10)
 qq.chisq(chi.squared(glm_all_adj),df=1)
 ```
+
+## Session information
+
+```{r session_info}
+devtools::session_info()
+```
+
+This document was processed on: `r Sys.Date()`.
