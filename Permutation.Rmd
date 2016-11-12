@@ -57,4 +57,11 @@ quantile(tstats_obj0$statistic)
 quantile(tstats_obj$statistic)
 ```
 
+## Session information
+
+```{r session_info}
+devtools::session_info()
+```
+
+This document was processed on: `r Sys.Date()`.
 
